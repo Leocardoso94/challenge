@@ -25,5 +25,11 @@ describe('app', () => {
         expect(response.statusCode).toBe(404);
       });
     });
+    describe('static content', () => {
+      it('should response the index.html', async () => {
+        const response = await request(app).get('/index.html');
+        expect(response.statusCode).toBe(200);
+      });
+    });
   });
 });
