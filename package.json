@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "lint": "eslint **/*.js"
+    "lint": "eslint {src,tests}/**/*.js"
   },
   "devDependencies": {
     "eslint": "4.9.0",
