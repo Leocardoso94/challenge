@@ -9,5 +9,11 @@ describe('app', () => {
         expect(response.statusCode).toBe(200);
       });
     });
+    describe('Not found', () => {
+      it('should response with status 404', async () => {
+        const response = await request(app).get('/teste/404');
+        expect(response.statusCode).toBe(404);
+      });
+    });
   });
 });
