@@ -7,7 +7,9 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "lint": "eslint {src,tests}/**/*.js"
+    "lint": "eslint {src,tests}/**/*.js",
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "devDependencies": {
     "eslint": "4.9.0",
@@ -15,6 +17,7 @@
     "eslint-plugin-import": "2.7.0",
     "husky": "^1.0.0-rc.7",
     "jest": "^23.0.0",
+    "nodemon": "^1.17.5",
     "supertest": "^3.1.0"
   },
   "husky": {
