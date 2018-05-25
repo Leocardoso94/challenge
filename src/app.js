@@ -1,4 +1,5 @@
 const http = require('http');
+const routes = require('./routes');
 
 const onRequest = (req, res) => {
   req.on('error', (err) => {
@@ -9,6 +10,7 @@ const onRequest = (req, res) => {
   res.on('error', (err) => {
     console.error(err);
   });
+  routes(req, res);
 };
 
 module.exports = http.createServer(onRequest);
