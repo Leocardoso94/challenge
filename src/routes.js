@@ -17,7 +17,7 @@ const send404 = (res) => {
 
 const relationUrlMethod = {
   '/': sendHtml,
-  '/fields': sendFields,
+  '/api/fields': sendFields,
 };
 
 module.exports = (req, res) => {
