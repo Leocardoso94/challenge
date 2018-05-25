@@ -25,6 +25,7 @@ const serveStaticContent = async (req, res) => {
     res.writeHead(200, { 'Content-Type': contentType });
     res.end(content, 'utf-8');
   } catch (error) {
+    if (process.env.NODE_ENV !== 'test') console.log(error);
     send404(res);
   }
 };
