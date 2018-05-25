@@ -30,6 +30,16 @@ describe('app', () => {
         const response = await request(app).get('/index.html');
         expect(response.statusCode).toBe(200);
       });
+      it('should response the style.css', async () => {
+        const response = await request(app).get('/css/style.css');
+        expect(response.statusCode).toBe(200);
+        expect(response.header['content-type']).toBe('text/css');
+      });
+      it('should response the script.js', async () => {
+        const response = await request(app).get('/js/script.js');
+        expect(response.statusCode).toBe(200);
+        expect(response.header['content-type']).toBe('text/javascript');
+      });
     });
   });
 });
