@@ -15,13 +15,13 @@ const send404 = (res) => {
   res.end('NOT FOUND');
 };
 
-const relationUrlMehod = {
+const relationUrlMethod = {
   '/': sendHtml,
   '/fields': sendFields,
 };
 
 module.exports = (req, res) => {
-  const method = relationUrlMehod[req.url];
+  const method = relationUrlMethod[req.url];
 
   method ? method(req, res) : send404(res);
 };
