@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const { createElementWithAttributes, getDefaulAttributes } = require('./../public/js/script');
+const { createElementWithAttributes, getDefaulAttributes, createLabel } = require('./../public/js/script');
 
 describe('script.js', () => {
   const field = {
@@ -32,6 +32,15 @@ describe('script.js', () => {
       expect(textArea.placeholder).toBe(field.placeholder);
       expect(textArea.required).toBe(field.required);
       expect(textArea.name).toBe(field.name);
+    });
+  });
+  describe('createLabel', () => {
+    it('should create a Label', () => {
+      const label = createLabel(field.label, field.name);
+
+      expect(label).toBeInstanceOf(HTMLLabelElement);
+      expect(label.textContent).toBe(field.label);
+      expect(label.htmlFor).toBe(field.name);
     });
   });
 });

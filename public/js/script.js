@@ -71,7 +71,7 @@ const generateForm = async () => {
 
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = { createElementWithAttributes, getDefaulAttributes };
+  module.exports = { createElementWithAttributes, getDefaulAttributes, createLabel };
 } else {
   generateForm();
 }
