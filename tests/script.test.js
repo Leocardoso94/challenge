@@ -7,6 +7,9 @@ const {
   createLabel,
   createFormField,
   createOptions,
+  getCreateElementFunction,
+  createTextArea,
+  createSelect,
 } = require('./../public/js/script');
 
 describe('script.js', () => {
@@ -70,6 +73,14 @@ describe('script.js', () => {
         expect(option.text).toEqual(field.values[index + 1]);
         expect(option.value).toEqual(`${index}`);
       });
+    });
+  });
+  describe('getCreateElementFunction', () => {
+    it('should return "createSelect" when type is enumerable', () => {
+      expect(getCreateElementFunction('enumerable')).toBe(createSelect);
+    });
+    it('should return "createTextArea" when type is big_text', () => {
+      expect(getCreateElementFunction('big_text')).toBe(createTextArea);
     });
   });
 });
