@@ -2,6 +2,11 @@
  * @jest-environment jsdom
  */
 const {
+  _embedded: {
+    request_fields,
+  },
+} = require('../src/data/fields.json');
+const {
   createElementWithAttributes,
   getDefaulAttributes,
   createLabel,
@@ -10,6 +15,7 @@ const {
   getCreateElementFunction,
   createTextArea,
   createSelect,
+  generateRequestFields,
 } = require('./../public/js/script');
 
 describe('script.js', () => {
@@ -90,6 +96,16 @@ describe('script.js', () => {
     });
     it('should return "createTextArea" when type is big_text', () => {
       expect(getCreateElementFunction('big_text')).toBe(createTextArea);
+    });
+  });
+  describe('generateRequestFields', () => {
+    it('should create requestfields', () => {
+      const requestFields = generateRequestFields(request_fields);
+
+      expect(requestFields.length).toBe(request_fields.length);
+      requestFields.forEach((requestField) => {
+        expect(requestField).toBeInstanceOf(HTMLDivElement);
+      });
     });
   });
 });
