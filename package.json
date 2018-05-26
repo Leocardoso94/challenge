@@ -18,6 +18,7 @@
     "husky": "^1.0.0-rc.7",
     "jest": "^23.0.0",
     "nodemon": "^1.17.5",
+    "rewire": "^4.0.1",
     "supertest": "^3.1.0"
   },
   "husky": {
