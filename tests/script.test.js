@@ -75,6 +75,15 @@ describe('script.js', () => {
       });
     });
   });
+  describe('createSelect', () => {
+    it('should create a select with options', () => {
+      const select = createSelect(field);
+
+      expect(select).toBeInstanceOf(HTMLSelectElement);
+      expect(select.options.length).toBe(4);
+      expect(select.value).toBe(field.mask);
+    });
+  });
   describe('getCreateElementFunction', () => {
     it('should return "createSelect" when type is enumerable', () => {
       expect(getCreateElementFunction('enumerable')).toBe(createSelect);
