@@ -1,6 +1,10 @@
 const getFields = async () => (await fetch('/api/fields')).json();
 
-const getDefaulAttributes = ({ name, required, placeholder }) => ({
+const getDefaulAttributes = ({
+  name,
+  required,
+  placeholder,
+}) => ({
   name,
   required,
   placeholder,
@@ -33,11 +37,12 @@ const createSelect = (field) => {
   const select = createElementWithAttributes('select', field);
   select.options[0] = new Option(field.mask);
 
-  getOptions(field.values).forEach((option) => { select.add(option); });
+  getOptions(field.values).forEach((option) => {
+    select.add(option);
+  });
 
   return select;
 };
-
 
 const createTextArea = field => createElementWithAttributes('textarea', field);
 
@@ -71,7 +76,12 @@ const generateForm = async () => {
 
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
-  module.exports = { createElementWithAttributes, getDefaulAttributes, createLabel };
+  module.exports = {
+    createElementWithAttributes,
+    getDefaulAttributes,
+    createLabel,
+    createFormField,
+  };
 } else {
   generateForm();
 }

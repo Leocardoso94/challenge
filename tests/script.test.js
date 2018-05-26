@@ -1,7 +1,12 @@
 /**
  * @jest-environment jsdom
  */
-const { createElementWithAttributes, getDefaulAttributes, createLabel } = require('./../public/js/script');
+const {
+  createElementWithAttributes,
+  getDefaulAttributes,
+  createLabel,
+  createFormField,
+} = require('./../public/js/script');
 
 describe('script.js', () => {
   const field = {
@@ -41,6 +46,13 @@ describe('script.js', () => {
       expect(label).toBeInstanceOf(HTMLLabelElement);
       expect(label.textContent).toBe(field.label);
       expect(label.htmlFor).toBe(field.name);
+    });
+  });
+  describe('createFormField', () => {
+    it('should create a div with class "form__field"', () => {
+      const formField = createFormField();
+      expect(formField).toBeInstanceOf(HTMLDivElement);
+      expect(formField.className).toBe('form__field');
     });
   });
 });
