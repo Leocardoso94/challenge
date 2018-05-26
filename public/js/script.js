@@ -31,8 +31,8 @@ const createFormField = () => {
   return formField;
 };
 
-const createOptions =
-  values => Object.values(values).map((value, index) => new Option(value, index));
+const createOptions = values => Object.values(values)
+  .map((value, index) => new Option(value, index));
 
 const createSelect = (field) => {
   const select = createElementWithAttributes('select', field);
@@ -47,12 +47,17 @@ const createSelect = (field) => {
 
 const createTextArea = field => createElementWithAttributes('textarea', field);
 
+const getCreateElementFunction = type => ({
+  enumerable: createSelect,
+  big_text: createTextArea,
+}[type]);
+
+const createElement = field => getCreateElementFunction(field.type)(field);
+
 const generateRequestFields = requestFields => requestFields.map((field) => {
   const formField = createFormField();
   formField.appendChild(createLabel(field.label, field.name));
-
-  if (field.type === 'enumerable') formField.appendChild(createSelect(field));
-  if (field.type === 'big_text') formField.appendChild(createTextArea(field));
+  formField.appendChild(createElement(field));
 
   return formField;
 });
@@ -83,6 +88,9 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     createLabel,
     createFormField,
     createOptions,
+    getCreateElementFunction,
+    createTextArea,
+    createSelect,
   };
 } else {
   generateForm();
