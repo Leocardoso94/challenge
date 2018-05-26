@@ -6,6 +6,7 @@ const {
   getDefaulAttributes,
   createLabel,
   createFormField,
+  createOptions,
 } = require('./../public/js/script');
 
 describe('script.js', () => {
@@ -16,6 +17,11 @@ describe('script.js', () => {
     mask: 'tipo de serviço',
     type: 'enumerable',
     required: true,
+    values: {
+      1: '1',
+      2: '2',
+      3: '3',
+    },
   };
   describe('getDefaulAttributes', () => {
     it('should return an object with name, required, placeholder, id', () => {
@@ -53,6 +59,17 @@ describe('script.js', () => {
       const formField = createFormField();
       expect(formField).toBeInstanceOf(HTMLDivElement);
       expect(formField.className).toBe('form__field');
+    });
+  });
+  describe('createOptions', () => {
+    it('should create options based in the field.values', () => {
+      const options = createOptions(field.values);
+
+      options.forEach((option, index) => {
+        expect(option).toBeInstanceOf(HTMLOptionElement);
+        expect(option.text).toEqual(field.values[index + 1]);
+        expect(option.value).toEqual(`${index}`);
+      });
     });
   });
 });

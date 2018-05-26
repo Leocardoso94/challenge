@@ -31,13 +31,14 @@ const createFormField = () => {
   return formField;
 };
 
-const getOptions = values => Object.values(values).map((value, index) => new Option(value, index));
+const createOptions =
+  values => Object.values(values).map((value, index) => new Option(value, index));
 
 const createSelect = (field) => {
   const select = createElementWithAttributes('select', field);
   select.options[0] = new Option(field.mask);
 
-  getOptions(field.values).forEach((option) => {
+  createOptions(field.values).forEach((option) => {
     select.add(option);
   });
 
@@ -81,6 +82,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     getDefaulAttributes,
     createLabel,
     createFormField,
+    createOptions,
   };
 } else {
   generateForm();
