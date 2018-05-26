@@ -31,7 +31,5 @@ const serveStaticContent = async (req, res) => {
 };
 
 module.exports = (req, res) => {
-  if (req.url === '/api/fields') sendFields(req, res);
-
-  serveStaticContent(req, res);
+  req.url === '/api/fields' ? sendFields(req, res) : serveStaticContent(req, res);
 };
