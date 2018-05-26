@@ -1,9 +1,7 @@
-const rewire = require('rewire');
-
-const script = rewire('../public/js/script.js');
-const getDefaulAttributes = script.__get__('getDefaulAttributes');
-const createElementWithAttributes = script.__get__('createElementWithAttributes');
-
+/**
+ * @jest-environment jsdom
+ */
+const { createElementWithAttributes, getDefaulAttributes } = require('./../public/js/script');
 
 describe('script.js', () => {
   const field = {
@@ -26,8 +24,14 @@ describe('script.js', () => {
     });
   });
   describe('createElementWithAttributes', () => {
-    it('should create a HTMLElement with some attributes', () => {
-      createElementWithAttributes('textarea', field);
+    it('should create a textarea with some attributes', () => {
+      const textArea = createElementWithAttributes('textarea', field);
+
+      expect(textArea).toBeInstanceOf(HTMLTextAreaElement);
+      expect(textArea.id).toBe(field.name);
+      expect(textArea.placeholder).toBe(field.placeholder);
+      expect(textArea.required).toBe(field.required);
+      expect(textArea.name).toBe(field.name);
     });
   });
 });
