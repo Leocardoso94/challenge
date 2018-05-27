@@ -111,7 +111,7 @@ describe('script.js', () => {
 
       expect(select).toBeInstanceOf(HTMLSelectElement);
       expect(select.options.length).toBe(4);
-      expect(select.value).toBe(field.mask);
+      expect(select.value).toBe('');
     });
   });
   describe('getCreateElementFunction', () => {
