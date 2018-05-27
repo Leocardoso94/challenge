@@ -96,3 +96,33 @@
 .button.user {
   display: none;
 }
+
+.form__steps {
+  flex-wrap: nowrap;
+  display: flex;
+  align-items: center;
+  background-color: #e7e7e7;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: inset 0 1px 0 0 rgba(51, 51, 51, .05);
+  color: rgba(83, 110, 123, .5);
+  font-size: 12px;
+  font-weight: 400;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.form__steps-item {
+  flex: 1;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  line-height: 1;
+  padding: 14px;
+  text-align: center;
+}
+
+.form__steps-item--active {
+  background-color: #fff;
+  color: #536e7b;
+}
