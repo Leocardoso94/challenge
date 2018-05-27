@@ -65,7 +65,7 @@ const generateRequestFields = requestFields => requestFields.map((field) => {
 
 const generateForm = async () => {
   try {
-    const formContainer = document.querySelector('.form__container');
+    const formContainer = document.querySelector('.form__container.request-fields');
 
     const {
       _embedded: {
