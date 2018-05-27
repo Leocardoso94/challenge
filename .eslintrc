@@ -2,7 +2,8 @@
   "extends": "airbnb-base",
   "env": {
     "node": true,
-    "jest": true
+    "jest": true,
+    "browser": true
   },
   "rules": {
     "no-unused-expressions": [
@@ -10,6 +11,7 @@
       {
         "allowTernary": true
       }
-    ]
+    ],
+    "no-underscore-dangle": "off"
   }
 }
