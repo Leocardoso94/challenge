@@ -69,3 +69,25 @@
   font-weight: 700;
   margin-bottom: 6px;
 }
+
+.form__info {
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 900;
+  margin-top: 15px;
+  text-align: center;
+  color: rgba(0, 0, 0, .8);
+}
+
+.form__info small {
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: left;
+  font-style: normal;
+  display: block;
+  font-weight: 400;
+}
+
+.form__info strong {
+  font-weight: 700;
+}
