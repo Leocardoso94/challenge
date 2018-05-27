@@ -67,6 +67,8 @@ const generateForm = async () => {
   try {
     const formContainer = document.querySelector('.form__container.request-fields');
 
+    const fragment = document.createDocumentFragment();
+
     const {
       _embedded: {
         request_fields,
@@ -74,8 +76,10 @@ const generateForm = async () => {
     } = await getFields();
 
     generateRequestFields(request_fields).forEach((field) => {
-      formContainer.appendChild(field);
+      fragment.appendChild(field);
     });
+
+    formContainer.appendChild(fragment);
   } catch (error) {
     console.error(error);
   }
