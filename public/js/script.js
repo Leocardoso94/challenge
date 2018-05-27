@@ -48,14 +48,25 @@ const createSelect = (field) => {
 
 const createTextArea = field => createElementWithAttributes('textarea', field);
 
-const getCreateElementFunction = type => ({
-  enumerable: createSelect,
-  big_text: createTextArea,
-}[type]);
+const createInput = (field) => {
+  const input = createElementWithAttributes('input', field);
+  input.type = field.type;
+
+  return input;
+};
+
+const getCreateElementFunction = (type) => {
+  const fn = {
+    enumerable: createSelect,
+    big_text: createTextArea,
+  }[type];
+
+  return fn || createInput;
+};
 
 const createElement = field => getCreateElementFunction(field.type)(field);
 
-const generateRequestFields = requestFields => requestFields.map((field) => {
+const generateFields = requestFields => requestFields.map((field) => {
   const formField = createFormField();
   formField.appendChild(createLabel(field.label, field.name));
   formField.appendChild(createElement(field));
@@ -63,23 +74,25 @@ const generateRequestFields = requestFields => requestFields.map((field) => {
   return formField;
 });
 
+const createFormContainerChields = (className, fields) => {
+  const formContainer = document.querySelector(className);
+  const fragment = document.createDocumentFragment();
+  generateFields(fields).forEach((field) => {
+    fragment.appendChild(field);
+  });
+  formContainer.appendChild(fragment);
+};
+
 const generateForm = async () => {
   try {
-    const formContainer = document.querySelector('.form__container.request-fields');
-
-    const fragment = document.createDocumentFragment();
-
     const {
       _embedded: {
         request_fields,
+        user_fields,
       },
     } = await getFields();
-
-    generateRequestFields(request_fields).forEach((field) => {
-      fragment.appendChild(field);
-    });
-
-    formContainer.appendChild(fragment);
+    createFormContainerChields('.form__container.request-fields', request_fields);
+    createFormContainerChields('.form__container.user', user_fields);
   } catch (error) {
     console.error(error);
   }
@@ -96,7 +109,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     getCreateElementFunction,
     createTextArea,
     createSelect,
-    generateRequestFields,
+    generateFields,
   };
 } else {
   generateForm();

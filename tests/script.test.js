@@ -15,7 +15,7 @@ const {
   getCreateElementFunction,
   createTextArea,
   createSelect,
-  generateRequestFields,
+  generateFields,
 } = require('./../public/js/script');
 
 describe('script.js', () => {
@@ -99,9 +99,9 @@ describe('script.js', () => {
       expect(getCreateElementFunction('big_text')).toBe(createTextArea);
     });
   });
-  describe('generateRequestFields', () => {
+  describe('generateFields', () => {
     it('should create requestfields', () => {
-      const requestFields = generateRequestFields(request_fields);
+      const requestFields = generateFields(request_fields);
 
       expect(requestFields.length).toBe(request_fields.length);
       requestFields.forEach((requestField) => {
