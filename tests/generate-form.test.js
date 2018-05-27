@@ -21,6 +21,7 @@ const {
   createTextArea,
   createSelect,
   generateFields,
+  createErrorMessageField,
 } = require('./../public/js/generate-form');
 
 describe('generate-form', () => {
@@ -154,6 +155,14 @@ describe('generate-form', () => {
       expect(!!document.querySelector('option')).toBe(true);
       expect(!!document.querySelector('input')).toBe(true);
       expect(!!document.querySelector('checkboc')).toBe(false);
+    });
+  });
+  describe('createErrorMessageField', () => {
+    it('should create an span with error message', () => {
+      const span = createErrorMessageField();
+      expect(span.textContent).toBe('Este campo é requerido');
+      expect(span.className).toBe('error-message');
+      expect(span).toBeInstanceOf(HTMLSpanElement);
     });
   });
 });

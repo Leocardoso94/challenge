@@ -126,3 +126,10 @@
   background-color: #fff;
   color: #536e7b;
 }
+
+.error-message {
+  color: #b24141;
+  display: inline-block;
+  font-size: 12px;
+  font-style: normal;
+}

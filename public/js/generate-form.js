@@ -66,11 +66,18 @@ const getCreateElementFunction = (type) => {
 
 const createElement = field => getCreateElementFunction(field.type)(field);
 
+const createErrorMessageField = () => {
+  const span = document.createElement('span');
+  span.className = 'error-message';
+  span.textContent = 'Este campo é requerido';
+  return span;
+};
+
 const generateFields = requestFields => requestFields.map((field) => {
   const formField = createFormField();
   formField.appendChild(createLabel(field.label, field.name));
   formField.appendChild(createElement(field));
-
+  if (field.required) formField.appendChild(createErrorMessageField());
   return formField;
 });
 
@@ -105,6 +112,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     createElementWithAttributes,
     getDefaulAttributes,
     createLabel,
+    createErrorMessageField,
     createFormField,
     createOptions,
     getCreateElementFunction,
