@@ -4,6 +4,7 @@
 const {
   _embedded: {
     request_fields,
+    user_fields,
   },
 } = require('../src/data/fields.json');
 const {
@@ -12,6 +13,7 @@ const {
   createLabel,
   createFormField,
   createOptions,
+  createFormContainerChildren,
   getCreateElementFunction,
   createTextArea,
   createSelect,
@@ -32,6 +34,9 @@ describe('script.js', () => {
       3: '3',
     },
   };
+  beforeEach(() => {
+    document.body.innerHTML = '<form></form>';
+  });
   describe('getDefaulAttributes', () => {
     it('should return an object with name, required, placeholder, id', () => {
       const expected = {
@@ -106,6 +111,20 @@ describe('script.js', () => {
       expect(requestFields.length).toBe(request_fields.length);
       requestFields.forEach((requestField) => {
         expect(requestField).toBeInstanceOf(HTMLDivElement);
+      });
+    });
+  });
+  describe('createFormContainerChildren', () => {
+    it('should create form children and add to the dom', () => {
+      createFormContainerChildren('form', user_fields);
+      const form = document.querySelector('form');
+      const formFields = form.querySelectorAll('.form__field');
+      expect(formFields).toBeInstanceOf(NodeList);
+      formFields.forEach((formField) => {
+        expect(!!formField.querySelector('label')).toBe(true);
+        expect(!!formField.querySelector('input')).toBe(true);
+        expect(!!formField.querySelector('textarea')).toBe(false);
+        expect(!!formField.querySelector('select')).toBe(false);
       });
     });
   });
