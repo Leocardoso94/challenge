@@ -39,6 +39,7 @@ describe('script.js', () => {
         required: field.required,
         placeholder: field.placeholder,
         id: field.name,
+        className: 'form__input',
       };
       expect(getDefaulAttributes(field)).toEqual(expected);
     });
