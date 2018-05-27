@@ -91,3 +91,8 @@
 .form__info strong {
   font-weight: 700;
 }
+
+.form__container.user,
+.button.user {
+  display: none;
+}
