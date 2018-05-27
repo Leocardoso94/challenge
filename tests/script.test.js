@@ -1,13 +1,16 @@
 /**
  * @jest-environment jsdom
  */
+const fields = require('../src/data/fields.json');
+
 const {
   _embedded: {
     request_fields,
     user_fields,
   },
-} = require('../src/data/fields.json');
+} = fields;
 const {
+  generateForm,
   createElementWithAttributes,
   getDefaulAttributes,
   createLabel,
@@ -35,7 +38,22 @@ describe('script.js', () => {
     },
   };
   beforeEach(() => {
-    document.body.innerHTML = '<form></form>';
+    document.body.innerHTML = `
+    <form>
+      <fieldset class="form__container request-fields"></fieldset>
+      <fieldset class="form__container user"></fieldset>
+    </form>`;
+    global.fetch = jest.fn().mockImplementation(() => {
+      const p = new Promise((resolve) => {
+        resolve({
+          json() {
+            return fields;
+          },
+        });
+      });
+
+      return p;
+    });
   });
   describe('getDefaulAttributes', () => {
     it('should return an object with name, required, placeholder, id', () => {
@@ -126,6 +144,16 @@ describe('script.js', () => {
         expect(!!formField.querySelector('textarea')).toBe(false);
         expect(!!formField.querySelector('select')).toBe(false);
       });
+    });
+  });
+  describe('generateForm', () => {
+    it('should render all fields', async () => {
+      await generateForm();
+      expect(!!document.querySelector('textarea')).toBe(true);
+      expect(!!document.querySelector('select')).toBe(true);
+      expect(!!document.querySelector('option')).toBe(true);
+      expect(!!document.querySelector('input')).toBe(true);
+      expect(!!document.querySelector('checkboc')).toBe(false);
     });
   });
 });

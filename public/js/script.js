@@ -111,6 +111,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
     createTextArea,
     createSelect,
     generateFields,
+    generateForm,
   };
 } else {
   generateForm();
