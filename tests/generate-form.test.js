@@ -21,7 +21,7 @@ const {
   createTextArea,
   createSelect,
   generateFields,
-} = require('./../public/js/script');
+} = require('./../public/js/generate-form');
 
 describe('script.js', () => {
   const field = {
