@@ -9,6 +9,7 @@ const getDefaulAttributes = ({
   required,
   placeholder,
   id: name,
+  className: 'form__input',
 });
 
 const createElementWithAttributes = (elementName, field) => Object.assign(
@@ -20,7 +21,7 @@ const createLabel = (text, htmlFor) => {
   const label = document.createElement('label');
   label.htmlFor = htmlFor;
   label.textContent = text;
-
+  label.classList.add('form__label');
   return label;
 };
 
@@ -64,7 +65,7 @@ const generateRequestFields = requestFields => requestFields.map((field) => {
 
 const generateForm = async () => {
   try {
-    const form = document.querySelector('.form');
+    const formContainer = document.querySelector('.form__container');
 
     const {
       _embedded: {
@@ -73,7 +74,7 @@ const generateForm = async () => {
     } = await getFields();
 
     generateRequestFields(request_fields).forEach((field) => {
-      form.appendChild(field);
+      formContainer.appendChild(field);
     });
   } catch (error) {
     console.error(error);
