@@ -74,7 +74,7 @@ const generateFields = requestFields => requestFields.map((field) => {
   return formField;
 });
 
-const createFormContainerChields = (className, fields) => {
+const createFormContainerChildren = (className, fields) => {
   const formContainer = document.querySelector(className);
   const fragment = document.createDocumentFragment();
   generateFields(fields).forEach((field) => {
@@ -91,8 +91,8 @@ const generateForm = async () => {
         user_fields,
       },
     } = await getFields();
-    createFormContainerChields('.form__container.request-fields', request_fields);
-    createFormContainerChields('.form__container.user', user_fields);
+    createFormContainerChildren('.form__container.request-fields', request_fields);
+    createFormContainerChildren('.form__container.user', user_fields);
   } catch (error) {
     console.error(error);
   }
@@ -101,6 +101,7 @@ const generateForm = async () => {
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
   module.exports = {
+    createFormContainerChildren,
     createElementWithAttributes,
     getDefaulAttributes,
     createLabel,
