@@ -37,7 +37,7 @@ const createOptions = values => Object.values(values)
 
 const createSelect = (field) => {
   const select = createElementWithAttributes('select', field);
-  select.options[0] = new Option(field.mask);
+  select.options[0] = new Option(field.mask, '');
 
   createOptions(field.values).forEach((option) => {
     select.add(option);
@@ -116,3 +116,4 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 } else {
   generateForm();
 }
+

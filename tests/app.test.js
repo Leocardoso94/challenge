@@ -36,7 +36,7 @@ describe('app', () => {
         expect(response.header['content-type']).toBe('text/css');
       });
       it('should response the script.js', async () => {
-        const response = await request(app).get('/js/script.js');
+        const response = await request(app).get('/js/generate-form.js');
         expect(response.statusCode).toBe(200);
         expect(response.header['content-type']).toBe('text/javascript');
       });

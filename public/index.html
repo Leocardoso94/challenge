@@ -30,12 +30,16 @@
         </h2>
       </fieldset>
       <fieldset class="form__container actions">
-        <button type="button" class="button" data-next-step>Buscar profissionais</button>
-        <button type="button" class="button">Finalizar</button>
+        <button type="button" class="button request-fields" data-next-step>Buscar profissionais</button>
+        <button type="button" class="button user">Finalizar</button>
       </fieldset>
+      <ol class="form__steps">
+        <li class="form__steps-item form__steps-item--active" data-step="seu_pedido">1. Seu pedido</li>
+        <li class="form__steps-item" data-step="seus_dados">2. Seus dados</li>
+      </ol>
     </form>
   </div>
 </body>
-<script src="js/script.js"></script>
-
+<script src="js/generate-form.js"></script>
+<script src="js/change-tabs.js"></script>
 </html>

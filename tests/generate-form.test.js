@@ -21,9 +21,9 @@ const {
   createTextArea,
   createSelect,
   generateFields,
-} = require('./../public/js/script');
+} = require('./../public/js/generate-form');
 
-describe('script.js', () => {
+describe('generate-form', () => {
   const field = {
     name: 'Qual será o serviço?',
     label: 'Qual será o serviço?',
@@ -111,7 +111,7 @@ describe('script.js', () => {
 
       expect(select).toBeInstanceOf(HTMLSelectElement);
       expect(select.options.length).toBe(4);
-      expect(select.value).toBe(field.mask);
+      expect(select.value).toBe('');
     });
   });
   describe('getCreateElementFunction', () => {
