@@ -69,7 +69,6 @@ const createElement = field => getCreateElementFunction(field.type)(field);
 const createErrorMessageField = () => {
   const span = document.createElement('span');
   span.className = 'error-message';
-  span.textContent = 'Este campo é requerido';
   return span;
 };
 

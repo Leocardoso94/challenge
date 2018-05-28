@@ -132,4 +132,9 @@
   display: inline-block;
   font-size: 12px;
   font-style: normal;
+  margin-top: 8px;
+}
+
+.error-message:empty {
+  display: none;
 }

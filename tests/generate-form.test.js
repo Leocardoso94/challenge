@@ -160,7 +160,6 @@ describe('generate-form', () => {
   describe('createErrorMessageField', () => {
     it('should create an span with error message', () => {
       const span = createErrorMessageField();
-      expect(span.textContent).toBe('Este campo é requerido');
       expect(span.className).toBe('error-message');
       expect(span).toBeInstanceOf(HTMLSpanElement);
     });

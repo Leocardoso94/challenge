@@ -6,6 +6,7 @@ document.body.innerHTML = `
  <form class="form">
  <fieldset class="form__container request-fields" style="display:block;">
   <input value="" required>
+  <span></span>
  </fieldset>
  <fieldset class="form__container user" style="display:none;">
  </fieldset>
@@ -31,6 +32,7 @@ describe('change-tabs', () => {
     expect(document.querySelector('fieldset.user').style.display).toBe('none');
     expect(document.querySelector('[data-step="seu_pedido"]').classList.contains('form__steps-item--active')).toBe(true);
     expect(document.querySelector('[data-step="seus_dados"]').classList.contains('form__steps-item--active')).toBe(false);
+    expect(document.querySelector('input').nextSibling.textContent).toBe('Este campo é requerido');
   });
   it('should change the tab when the button is clicked', () => {
     document.querySelector('input').value = '1';

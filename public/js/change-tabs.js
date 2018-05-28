@@ -17,10 +17,17 @@ const nextStep = () => {
 
 const buttonFirstStep = document.querySelector('.button.request-fields');
 
+const showErrors = (fields = []) => {
+  fields.forEach((field) => {
+    const errorMessage = field.nextSibling;
+    errorMessage.textContent = 'Este campo é requerido';
+  });
+};
+
 buttonFirstStep.addEventListener('click', () => {
   const fieldSet = document.querySelector('fieldset.request-fields');
   const requiredFields = fieldSet.querySelectorAll(':required');
   const isFieldEmpty = [...requiredFields].some(field => field.value === '');
 
-  if (!isFieldEmpty) nextStep();
+  !isFieldEmpty ? nextStep() : showErrors([...requiredFields].filter(field => field.value === ''));
 });
