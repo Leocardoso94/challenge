@@ -1,4 +1,4 @@
-import { getDataFromForm } from '../../src/client/js/send-form';
+import { getDataFromForm, areAllErrorsEmpty } from '../../src/client/js/send-form';
 
 
 describe('sendForm', () => {
@@ -13,6 +13,22 @@ describe('sendForm', () => {
       const { username, password } = getDataFromForm();
       expect(username).toBe('teste');
       expect(password).toBe('foo');
+    });
+  });
+  describe('areAllErrorsEmpty', () => {
+    it('should return true if all errors are empty', () => {
+      document.body.innerHTML = `
+        <span class="error-message'"></span>
+        <span class="error-message'"></span>
+        <span class="error-message'"></span>`;
+      expect(areAllErrorsEmpty()).toBe(true);
+    });
+    it('should return false if one error is not empty', () => {
+      document.body.innerHTML = `
+        <span class="error-message"></span>
+        <span class="error-message">ERRO</span>
+        <span class="error-message"></span>`;
+      expect(areAllErrorsEmpty()).toBe(false);
     });
   });
 });
