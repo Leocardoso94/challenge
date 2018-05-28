@@ -1,4 +1,5 @@
-import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty } from '../../src/client/js/validations';
+import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty, validateEmail } from '../../src/client/js/validations';
+import { EMAIL_INVALID_MESSAGE } from '../../src/client/js/messages';
 
 describe('validations', () => {
   describe('hasRequiredFieldsEmptyOnFieldset', () => {
@@ -59,8 +60,23 @@ describe('validations', () => {
     });
   });
   describe('validateEmail', () => {
-    it('should ', () => {
-
+    it('should show the email invalid message', () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      validateEmail(document.querySelector('input'));
+      expect(document.body.innerHTML).toContain(EMAIL_INVALID_MESSAGE);
+    });
+    it('should remove the email invalid message', () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      const input = document.querySelector('input');
+      validateEmail(input);
+      input.value = 'teste@teste.com';
+      validateEmail(input);
+      expect(document.querySelector('span').textContent.trim()).toBe('');
+    });
+    it('should not show the email invalid message if value is empty', () => {
+      document.body.innerHTML = '<input value=""><span/>';
+      validateEmail(document.querySelector('input'));
+      expect(document.querySelector('span').textContent.trim()).toBe('');
     });
   });
 });
