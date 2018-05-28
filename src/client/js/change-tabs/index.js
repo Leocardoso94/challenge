@@ -15,8 +15,6 @@ const nextStep = () => {
   showUserFields();
 };
 
-const buttonFirstStep = document.querySelector('.button.request-fields');
-
 const showErrors = (fields = []) => {
   fields.forEach((field) => {
     const errorMessage = field.nextSibling;
@@ -24,10 +22,11 @@ const showErrors = (fields = []) => {
   });
 };
 
-buttonFirstStep.addEventListener('click', () => {
+export default () => {
   const fieldSet = document.querySelector('fieldset.request-fields');
   const requiredFields = fieldSet.querySelectorAll(':required');
   const isFieldEmpty = [...requiredFields].some(field => field.value === '');
 
   !isFieldEmpty ? nextStep() : showErrors([...requiredFields].filter(field => field.value === ''));
-});
+};
+

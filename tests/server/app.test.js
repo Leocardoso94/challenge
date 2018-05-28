@@ -1,6 +1,6 @@
 const request = require('supertest');
-const app = require('../src/app');
-const fields = require('./../src/data/fields.json');
+const app = require('../../src/server/app');
+const fields = require('../../src/server/data/fields.json');
 
 describe('app', () => {
   describe('routes', () => {
@@ -30,13 +30,8 @@ describe('app', () => {
         const response = await request(app).get('/index.html');
         expect(response.statusCode).toBe(200);
       });
-      it('should response the style.css', async () => {
-        const response = await request(app).get('/css/style.css');
-        expect(response.statusCode).toBe(200);
-        expect(response.header['content-type']).toBe('text/css');
-      });
       it('should response the script.js', async () => {
-        const response = await request(app).get('/js/generate-form.js');
+        const response = await request(app).get('/bundle.js');
         expect(response.statusCode).toBe(200);
         expect(response.header['content-type']).toBe('text/javascript');
       });

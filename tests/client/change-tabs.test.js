@@ -2,6 +2,8 @@
  * @jest-environment jsdom
  */
 
+import changeTabs from '../../src/client/js/change-tabs';
+
 document.body.innerHTML = `
  <form class="form">
  <fieldset class="form__container request-fields" style="display:block;">
@@ -21,11 +23,10 @@ document.body.innerHTML = `
 </form>
  `;
 
-require('../public/js/change-tabs');
 
 describe('change-tabs', () => {
   it('should not change tab when a required input is empty', () => {
-    document.querySelector('button.request-fields').click();
+    changeTabs();
     expect(document.querySelector('fieldset.request-fields').style.display).toBe('block');
     expect(document.querySelector('.button.request-fields').style.display).toBe('block');
     expect(document.querySelector('.button.user').style.display).toBe('none');
@@ -36,7 +37,7 @@ describe('change-tabs', () => {
   });
   it('should change the tab when the button is clicked', () => {
     document.querySelector('input').value = '1';
-    document.querySelector('button.request-fields').click();
+    changeTabs();
     expect(document.querySelector('fieldset.request-fields').style.display).toBe('none');
     expect(document.querySelector('.button.request-fields').style.display).toBe('none');
     expect(document.querySelector('.button.user').style.display).toBe('block');
