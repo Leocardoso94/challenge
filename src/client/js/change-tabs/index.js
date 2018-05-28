@@ -1,3 +1,6 @@
+import { showRequiredFieldErrorsOnFieldSet } from '../show-errors';
+import { hasRequiredFieldsEmptyOnFieldset } from '../validations';
+
 const showUserFields = () => {
   document.querySelector('.button.user').style.display = 'block';
   document.querySelector('fieldset.user').style.display = 'block';
@@ -15,12 +18,12 @@ const nextStep = () => {
   showUserFields();
 };
 
-const buttonFirstStep = document.querySelector('.button.request-fields');
 
-buttonFirstStep.addEventListener('click', () => {
+export default () => {
   const fieldSet = document.querySelector('fieldset.request-fields');
-  const requiredFields = fieldSet.querySelectorAll(':required');
-  const isFieldEmpty = [...requiredFields].some(field => field.value === '');
 
-  if (!isFieldEmpty) nextStep();
-});
+  hasRequiredFieldsEmptyOnFieldset(fieldSet) ?
+    showRequiredFieldErrorsOnFieldSet(fieldSet) :
+    nextStep();
+};
+

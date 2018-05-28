@@ -1,18 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-const fields = require('../src/data/fields.json');
-
-const {
-  _embedded: {
-    request_fields,
-    user_fields,
-  },
-} = fields;
-const {
-  generateForm,
+import {
+  generateFields,
   createElementWithAttributes,
-  getDefaulAttributes,
   createLabel,
   createFormField,
   createOptions,
@@ -20,10 +11,19 @@ const {
   getCreateElementFunction,
   createTextArea,
   createSelect,
-  generateFields,
-} = require('./../public/js/generate-form');
+  createErrorMessageField,
+} from '../../src/client/js/generate-form/create-elements';
+import fields from '../../src/server/data/fields.json';
 
-describe('generate-form', () => {
+const {
+  _embedded: {
+    request_fields,
+    user_fields,
+  },
+} = fields;
+
+
+describe('create-elements', () => {
   const field = {
     name: 'Qual será o serviço?',
     label: 'Qual será o serviço?',
@@ -43,29 +43,6 @@ describe('generate-form', () => {
       <fieldset class="form__container request-fields"></fieldset>
       <fieldset class="form__container user"></fieldset>
     </form>`;
-    global.fetch = jest.fn().mockImplementation(() => {
-      const p = new Promise((resolve) => {
-        resolve({
-          json() {
-            return fields;
-          },
-        });
-      });
-
-      return p;
-    });
-  });
-  describe('getDefaulAttributes', () => {
-    it('should return an object with name, required, placeholder, id', () => {
-      const expected = {
-        name: field.name,
-        required: field.required,
-        placeholder: field.placeholder,
-        id: field.name,
-        className: 'form__input',
-      };
-      expect(getDefaulAttributes(field)).toEqual(expected);
-    });
   });
   describe('createElementWithAttributes', () => {
     it('should create a textarea with some attributes', () => {
@@ -146,14 +123,11 @@ describe('generate-form', () => {
       });
     });
   });
-  describe('generateForm', () => {
-    it('should render all fields', async () => {
-      await generateForm();
-      expect(!!document.querySelector('textarea')).toBe(true);
-      expect(!!document.querySelector('select')).toBe(true);
-      expect(!!document.querySelector('option')).toBe(true);
-      expect(!!document.querySelector('input')).toBe(true);
-      expect(!!document.querySelector('checkboc')).toBe(false);
+  describe('createErrorMessageField', () => {
+    it('should create an span with error message', () => {
+      const span = createErrorMessageField();
+      expect(span.className).toBe('error-message');
+      expect(span).toBeInstanceOf(HTMLSpanElement);
     });
   });
 });

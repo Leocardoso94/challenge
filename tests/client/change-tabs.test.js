@@ -2,10 +2,14 @@
  * @jest-environment jsdom
  */
 
+import changeTabs from '../../src/client/js/change-tabs';
+import { REQUIRED_FIELD_MESSAGE } from '../../src/client/js/messages';
+
 document.body.innerHTML = `
  <form class="form">
  <fieldset class="form__container request-fields" style="display:block;">
   <input value="" required>
+  <span></span>
  </fieldset>
  <fieldset class="form__container user" style="display:none;">
  </fieldset>
@@ -20,21 +24,21 @@ document.body.innerHTML = `
 </form>
  `;
 
-require('../public/js/change-tabs');
 
 describe('change-tabs', () => {
   it('should not change tab when a required input is empty', () => {
-    document.querySelector('button.request-fields').click();
+    changeTabs();
     expect(document.querySelector('fieldset.request-fields').style.display).toBe('block');
     expect(document.querySelector('.button.request-fields').style.display).toBe('block');
     expect(document.querySelector('.button.user').style.display).toBe('none');
     expect(document.querySelector('fieldset.user').style.display).toBe('none');
     expect(document.querySelector('[data-step="seu_pedido"]').classList.contains('form__steps-item--active')).toBe(true);
     expect(document.querySelector('[data-step="seus_dados"]').classList.contains('form__steps-item--active')).toBe(false);
+    expect(document.querySelector('input').nextSibling.textContent).toBe(REQUIRED_FIELD_MESSAGE);
   });
   it('should change the tab when the button is clicked', () => {
     document.querySelector('input').value = '1';
-    document.querySelector('button.request-fields').click();
+    changeTabs();
     expect(document.querySelector('fieldset.request-fields').style.display).toBe('none');
     expect(document.querySelector('.button.request-fields').style.display).toBe('none');
     expect(document.querySelector('.button.user').style.display).toBe('block');
