@@ -18,10 +18,10 @@ const setTextOfErrorIfIsNotEmpty = (input, errorText) => {
 
 
 export const validateCEP = async (input) => {
-  const cep = input.value.replace(/\.|-/g, '');
   let errorText = '';
   try {
-    await fetchCEP(cep);
+    const { erro } = await fetchCEP(input.value.replace(/\.|-/g, ''));
+    if (erro) throw new Error('cpf inválido');
   } catch (error) {
     errorText = CEP_INVALID_MESSAGE;
   }
