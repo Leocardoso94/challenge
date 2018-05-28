@@ -1,4 +1,4 @@
-import { getDefaulAttributes } from '../../src/client/js/utils';
+import { getDefaulAttributes, mask } from '../../src/client/js/utils';
 
 describe('util', () => {
   const field = {
@@ -24,6 +24,23 @@ describe('util', () => {
         className: 'form__input',
       };
       expect(getDefaulAttributes(field)).toEqual(expected);
+    });
+  });
+  describe('mask', () => {
+    it('should add a mask to the target', () => {
+      const event = {
+        target: {
+          value: '',
+          mask: '#####-##',
+        },
+      };
+      // simulando input do usuário
+      '1111111'.split('').forEach((number) => {
+        event.target.value += number;
+        mask(event);
+      });
+
+      expect(event.target.value).toBe('11111-11');
     });
   });
 });
