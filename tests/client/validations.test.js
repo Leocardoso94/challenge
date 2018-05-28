@@ -1,5 +1,5 @@
-import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty, validateEmail, validateCEP } from '../../src/client/js/validations';
-import { EMAIL_INVALID_MESSAGE, CEP_INVALID_MESSAGE } from '../../src/client/js/messages';
+import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty, validateEmail, validateCEP, validatePhoneNumber } from '../../src/client/js/validations';
+import { EMAIL_INVALID_MESSAGE, CEP_INVALID_MESSAGE, PHONE_INVALID_MESSAGE } from '../../src/client/js/messages';
 
 describe('validations', () => {
   describe('hasRequiredFieldsEmptyOnFieldset', () => {
@@ -117,6 +117,26 @@ describe('validations', () => {
       }));
       await validateCEP(input);
       expect(document.querySelector('span').textContent).toBe(CEP_INVALID_MESSAGE);
+    });
+  });
+  describe('validatePhoneNumber', () => {
+    it('should show the email invalid message', () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      validatePhoneNumber(document.querySelector('input'));
+      expect(document.body.innerHTML).toContain(PHONE_INVALID_MESSAGE);
+    });
+    it('should remove the email invalid message', () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      const input = document.querySelector('input');
+      validatePhoneNumber(input);
+      input.value = '11 95154-0000';
+      validatePhoneNumber(input);
+      expect(document.querySelector('span').textContent.trim()).toBe('');
+    });
+    it('should not show the email invalid message if value is empty', () => {
+      document.body.innerHTML = '<input value=""><span/>';
+      validatePhoneNumber(document.querySelector('input'));
+      expect(document.querySelector('span').textContent.trim()).toBe('');
     });
   });
 });
