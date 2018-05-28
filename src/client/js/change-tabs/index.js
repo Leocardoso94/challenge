@@ -1,3 +1,6 @@
+import { showRequiredFieldErrorsOnFieldSet } from '../show-errors';
+import { hasRequiredFieldsEmptyOnFieldset } from '../validations';
+
 const showUserFields = () => {
   document.querySelector('.button.user').style.display = 'block';
   document.querySelector('fieldset.user').style.display = 'block';
@@ -15,18 +18,12 @@ const nextStep = () => {
   showUserFields();
 };
 
-const showErrors = (fields = []) => {
-  fields.forEach((field) => {
-    const errorMessage = field.nextSibling;
-    errorMessage.textContent = 'Este campo é requerido';
-  });
-};
 
 export default () => {
   const fieldSet = document.querySelector('fieldset.request-fields');
-  const requiredFields = fieldSet.querySelectorAll(':required');
-  const isFieldEmpty = [...requiredFields].some(field => field.value === '');
 
-  !isFieldEmpty ? nextStep() : showErrors([...requiredFields].filter(field => field.value === ''));
+  hasRequiredFieldsEmptyOnFieldset(fieldSet) ?
+    showRequiredFieldErrorsOnFieldSet(fieldSet) :
+    nextStep();
 };
 
