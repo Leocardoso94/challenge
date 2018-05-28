@@ -1,13 +1,17 @@
 language: node_js
-
 node_js:
 - 8.9.4
-
 cache:
   yarn: true
   directories:
   - node_modules
-
 script:
-  - yarn lint
-  - yarn test
+- yarn lint
+- yarn test
+deploy:
+  provider: heroku
+  api_key:
+    secure: GfuFUzqj6DM0uJgF41+3mHlfvarnxixjigvX2a7NIuNx5aWQ/rgDbOiI8u2GmRWDkJQOAKtB0ExNLRpnksaX9HHNbUerMDorNmvT3McU+spJVKxhIzOpdNIEyVQheHQmUjrirdm0tbYg6fLzHRjWrddVXKNDUfEA9CjaLTxnKQG22qT3fC4gAYP5r4gUDEQJ+GEkVIHgE2Ip75lKmeAhYxepZNFBEkc11SlK/n3NH6eanFW/jaoqS9U296O2Yx7dWOTZiz00+CNYbn6fco9aev7NRlL/MbVBCbt08I/iYTjdQPjl0EQaQeHnEgb4ytmFalsFr60dZ53zE/x9v+yDu5T0hS+FkzOGpLjv8WOHIYo2Ey8NWbqlMLD7DFzdx8rDck1ZVNKkFei7T+FQ/Ehv16QcWqjIkrW1fLcHnQQkriKNo28GggIjjpJXZwtdQa2cC9BvQg//CwnE2CpVIgA22d/jeHCxzCd5szBHePDzGiq3d65BOYmrLAAPm8tkw8O2kWycbjBrynwnlsKiCw09FA8mXUbDr11YdWwMf8CX7OOH6LZ7ROsf+hSLX+9dN7QG0MteRUclqygkfy1EHacdNS/mskstmjp/FE6iFs3qP9ChW4kH6ZF82ZFW5zT+x4XyxNLwVNL2V0ckf5kgnGZd4a5RP34UQkH07DsLM8GFcgg=
+  app: getninjas-challenge
+  on:
+    repo: Leocardoso94/challenge
