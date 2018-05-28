@@ -30,7 +30,9 @@
     "jsdom": "^11.11.0",
     "mini-css-extract-plugin": "^0.4.0",
     "nodemon": "^1.17.5",
+    "optimize-css-assets-webpack-plugin": "^4.0.2",
     "supertest": "^3.1.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.9.1",
     "webpack-cli": "^2.1.4"
   },
