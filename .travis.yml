@@ -1,14 +1,18 @@
 language: node_js
-
 node_js:
 - 8.9.4
-
 cache:
   yarn: true
   directories:
   - node_modules
-
 script:
   - yarn lint
   - yarn build
   - yarn test --coverage --verbose
+deploy:
+  provider: heroku
+  api_key:
+    secure: STSDgqYub9nZbRLCWMl3o6buBj7+X4XhlI2iL4aDrILjxCNHnV4MnwC8zenh4jZPHH13YmdFNyiaFcjCfjwdJ4aQeTe691IBSHEFNI+xHbG03RYb9WBbinqJSCQvWDItMig//GCuAvMUbfFFQLLdB6s9hWn0FcumqBARuskgkt5ChV9HM2YnqFYx7jJDrq5toYxgV+0l6nPA9RdjhEGETNHwPSJ1zjQtFCjHS4nhytyB4toQcbpkm5SbmQ8o8g1Q5pw+ecUnAceiqJgmfjH7ZYxYUw4hi8cIeGMcIuI1kQKZ3j0I173rJJyiuRkiFvgz4UCxyq2D6xo2lBHXYqTYiXzMAwrUtu/HVfdjvkzLPFoxwjL6PenYEVpNfQDsFD7mAQrHbx4q2J3S/3pNGibXQCuKzpmaemHpOfc7qJbWI1GuFfsQdTae/2AJkBMPaRPRgPG8zjAbbzS6vFethuvoiARhZ+YCeyDmhEQZOPp0JEs5NyDULNTqfb3igExIEtvdShvBm568N7eFsoUsy6lfrdK0+N+JwEen5EcEPXlnkYRHMqJkJ3htBspbqE1wB8mxATe3HUR0ghEuXySb9Gs2vMNcP6011NuOYmhejPWawT++7crnULagLI0NppWFDqeavIkI/GaD5n1MghhJ3KamdFOA1itwoy/Rox/e4yJcmQE=
+  app: getninjas-challenge
+  on:
+    repo: Leocardoso94/challenge
