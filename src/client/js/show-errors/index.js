@@ -1,14 +1,18 @@
 import { isEmpty } from '../validations';
 
+export const setTextOfError = (field, text) => {
+  const errorMessage = field.nextSibling;
+  errorMessage.textContent = text;
+};
+
 export const showRequiredFieldErrorsOnFieldSet = (fieldSet) => {
   const fields = [...fieldSet.querySelectorAll(':required')].filter(field => isEmpty(field.value));
   fields.forEach((field) => {
-    const errorMessage = field.nextSibling;
-    errorMessage.textContent = 'Este campo é requerido';
+    setTextOfError(field, 'Este campo é requerido');
   });
 };
 
 
-export const showCpfError = () => {
+export const showEmailError = () => {
 
 };

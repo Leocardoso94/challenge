@@ -1,3 +1,5 @@
+import { setTextOfError } from '../show-errors';
+
 export const isEmpty = value => typeof value === 'undefined' ||
   (Array.isArray(value) && value.length === 0) ||
   value === null ||
@@ -13,11 +15,9 @@ export const validateCpf = () => {
 
 };
 
-
 export const isValidEmail = email => /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/gi.test(email);
 
 export const validateEmail = (input) => {
-  if (isEmpty(input.value)) return false;
-
-  return isValidEmail(input.value);
+  const errorText = !isValidEmail(input.value) ? 'Email inválido' : '';
+  if (!isEmpty(input.value)) setTextOfError(input, errorText);
 };
