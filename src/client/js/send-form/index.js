@@ -3,7 +3,7 @@ import { hasRequiredFieldsEmptyOnFieldset, validateEmail, validateCEP } from '..
 
 export default () => {
   const fieldSet = document.querySelector('fieldset.user');
-  if (hasRequiredFieldsEmptyOnFieldset(fieldSet)) showRequiredFieldErrorsOnFieldSet(fieldSet);
+  showRequiredFieldErrorsOnFieldSet(fieldSet);
 
   validateEmail(document.querySelector('[type="email"]'));
   validateCEP(document.querySelector('[type="cep"]'));
