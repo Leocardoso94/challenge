@@ -7,13 +7,9 @@ export const setTextOfError = (field, text) => {
 };
 
 export const showRequiredFieldErrorsOnFieldSet = (fieldSet) => {
-  const fields = [...fieldSet.querySelectorAll(':required')].filter(field => isEmpty(field.value));
+  const fields = fieldSet.querySelectorAll(':required');
   fields.forEach((field) => {
-    setTextOfError(field, REQUIRED_FIELD_MESSAGE);
+    const errorMessage = isEmpty(field.value) ? REQUIRED_FIELD_MESSAGE : '';
+    setTextOfError(field, errorMessage);
   });
-};
-
-
-export const showEmailError = () => {
-
 };

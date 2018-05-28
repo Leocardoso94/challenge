@@ -1,10 +1,26 @@
 import { showRequiredFieldErrorsOnFieldSet } from '../show-errors';
-import { hasRequiredFieldsEmptyOnFieldset, validateEmail, validateCEP } from '../validations';
+import { validateEmail, validateCEP, validatePhoneNumber, isEmpty } from '../validations';
+
+const hasAnErrorMessage = () => [...document.querySelectorAll('.error-message')].every(span => isEmpty(span.textContent.trim()));
+
+export const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
+  .reduce((obj, element) => {
+    obj[element.name] = element.value; // eslint-disable-line no-param-reassign
+    return obj;
+  }, {});
+
+const sendData = () => {
+  alert('Seus dados foram enviados, olhe no console 🐱‍👤');
+  console.log(getDataFromForm());
+};
 
 export default () => {
   const fieldSet = document.querySelector('fieldset.user');
-  if (hasRequiredFieldsEmptyOnFieldset(fieldSet)) showRequiredFieldErrorsOnFieldSet(fieldSet);
+  showRequiredFieldErrorsOnFieldSet(fieldSet);
 
   validateEmail(document.querySelector('[type="email"]'));
   validateCEP(document.querySelector('[type="cep"]'));
+  validatePhoneNumber(document.querySelector('[type="phone"]'));
+
+  if (hasAnErrorMessage()) sendData();
 };

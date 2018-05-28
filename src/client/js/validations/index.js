@@ -1,5 +1,5 @@
 import { setTextOfError } from '../show-errors';
-import { EMAIL_INVALID_MESSAGE, CEP_INVALID_MESSAGE } from '../messages';
+import { EMAIL_INVALID_MESSAGE, CEP_INVALID_MESSAGE, PHONE_INVALID_MESSAGE } from '../messages';
 import { fetchCEP } from '../utils';
 
 export const isEmpty = value => typeof value === 'undefined' ||
@@ -35,3 +35,10 @@ export const validateEmail = (input) => {
   setTextOfErrorIfIsNotEmpty(input, errorText);
 };
 
+export const isValidPhoneNumber = phone => /(?:)[0-9]{2}(?:)\s?[0-9]{4,5}(?:-)[0-9]{4}$/mg.test(phone);
+
+
+export const validatePhoneNumber = (input) => {
+  const errorText = !isValidPhoneNumber(input.value) ? PHONE_INVALID_MESSAGE : '';
+  setTextOfErrorIfIsNotEmpty(input, errorText);
+};

@@ -21,9 +21,7 @@ const nextStep = () => {
 
 export default () => {
   const fieldSet = document.querySelector('fieldset.request-fields');
-
-  hasRequiredFieldsEmptyOnFieldset(fieldSet) ?
-    showRequiredFieldErrorsOnFieldSet(fieldSet) :
-    nextStep();
+  showRequiredFieldErrorsOnFieldSet(fieldSet);
+  if (!hasRequiredFieldsEmptyOnFieldset(fieldSet)) nextStep();
 };
 
