@@ -11,19 +11,14 @@ describe('generate-form', () => {
       <fieldset class="form__container request-fields"></fieldset>
       <fieldset class="form__container user"></fieldset>
     </form>`;
-    global.fetch = jest.fn().mockImplementation(() => {
-      const p = new Promise((resolve) => {
-        resolve({
-          json() {
-            return fields;
-          },
-        });
+    global.fetch = jest.fn().mockImplementation(() => new Promise((resolve) => {
+      resolve({
+        json() {
+          return fields;
+        },
       });
-
-      return p;
-    });
+    }));
   });
-
 
   describe('generateForm', () => {
     it('should render all fields', async () => {
