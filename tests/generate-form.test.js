@@ -23,7 +23,7 @@ const {
   generateFields,
 } = require('./../public/js/generate-form');
 
-describe('script.js', () => {
+describe('generate-form', () => {
   const field = {
     name: 'Qual será o serviço?',
     label: 'Qual será o serviço?',
