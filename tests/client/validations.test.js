@@ -1,4 +1,4 @@
-import { hasRequiredFieldsEmptyOnFieldset } from '../../src/client/js/validations';
+import { hasRequiredFieldsEmptyOnFieldset, isValidEmail } from '../../src/client/js/validations';
 
 describe('validations', () => {
   describe('hasRequiredFieldsEmptyOnFieldset', () => {
@@ -31,6 +31,19 @@ describe('validations', () => {
       `;
       const fieldSet = document.querySelector('fieldset');
       expect(hasRequiredFieldsEmptyOnFieldset(fieldSet)).toBe(false);
+    });
+  });
+  describe('isValidEmail', () => {
+    it('should return false is not a valid email', () => {
+      expect(isValidEmail()).toBe(false);
+      expect(isValidEmail('')).toBe(false);
+      expect(isValidEmail('user@gmail')).toBe(false);
+      expect(isValidEmail('user@')).toBe(false);
+    });
+    it('should return true is a valid email', () => {
+      expect(isValidEmail('user.name@gmail.com')).toBe(true);
+      expect(isValidEmail('user@gmail.com')).toBe(true);
+      expect(isValidEmail('user@hotmail.com')).toBe(true);
     });
   });
 });
