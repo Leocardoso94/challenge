@@ -25,7 +25,6 @@ export const validateCEP = async (input) => {
   } catch (error) {
     errorText = CEP_INVALID_MESSAGE;
   }
-
   setTextOfErrorIfIsNotEmpty(input, errorText);
 };
 

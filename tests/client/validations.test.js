@@ -1,5 +1,5 @@
-import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty, validateEmail } from '../../src/client/js/validations';
-import { EMAIL_INVALID_MESSAGE } from '../../src/client/js/messages';
+import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty, validateEmail, validateCEP } from '../../src/client/js/validations';
+import { EMAIL_INVALID_MESSAGE, CEP_INVALID_MESSAGE } from '../../src/client/js/messages';
 
 describe('validations', () => {
   describe('hasRequiredFieldsEmptyOnFieldset', () => {
@@ -76,6 +76,33 @@ describe('validations', () => {
     it('should not show the email invalid message if value is empty', () => {
       document.body.innerHTML = '<input value=""><span/>';
       validateEmail(document.querySelector('input'));
+      expect(document.querySelector('span').textContent.trim()).toBe('');
+    });
+  });
+  describe('validateCEP', () => {
+    it('should show the cep invalid message', async () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      await validateCEP(document.querySelector('input'));
+      expect(document.body.innerHTML).toContain(CEP_INVALID_MESSAGE);
+    });
+    it('should remove the cep invalid message', async () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      const input = document.querySelector('input');
+      await validateCEP(input);
+      global.fetch = jest.fn().mockImplementation(() => new Promise((resolve) => {
+        resolve({
+          json() {
+            return true;
+          },
+        });
+      }));
+      input.value = '04320-040';
+      await validateCEP(input);
+      expect(document.querySelector('span').textContent.trim()).toBe('');
+    });
+    it('should not show the cep invalid message if value is empty', async () => {
+      document.body.innerHTML = '<input value=""><span/>';
+      await validateCEP(document.querySelector('input'));
       expect(document.querySelector('span').textContent.trim()).toBe('');
     });
   });
