@@ -11,7 +11,8 @@
     "dev:client": "webpack --mode development --watch",
     "dev:server": "nodemon src/server/server.js",
     "start": "npm run build && node src/server/server.js",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "tdd": "jest --watch --coverage --verbose"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0",
