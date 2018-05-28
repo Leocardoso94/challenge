@@ -25,3 +25,12 @@ export const fetchCEP = (cep) => {
 
   return getJSON(`https://viacep.com.br/ws/${cep}/json/`, options);
 };
+
+export function mask(event) {
+  const { length } = event.target.value;
+  const saida = event.target.mask.substring(1, 0);
+  const texto = event.target.mask.substring(length);
+  if (texto.substring(0, 1) !== saida) {
+    event.target.value += texto.substring(0, 1); // eslint-disable-line no-param-reassign
+  }
+}
