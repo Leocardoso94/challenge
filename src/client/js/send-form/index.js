@@ -1,7 +1,7 @@
 import { showRequiredFieldErrorsOnFieldSet } from '../show-errors';
 import { validateEmail, validateCEP, validatePhoneNumber, isEmpty } from '../validations';
 
-const hasAnErrorMessage = () => [...document.querySelectorAll('.error-message')].every(span => isEmpty(span.textContent.trim()));
+export const areAllErrorsEmpty = () => [...document.querySelectorAll('.error-message')].every(span => isEmpty(span.textContent.trim()));
 
 export const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
   .reduce((obj, element) => {
@@ -22,5 +22,5 @@ export default () => {
   validateCEP(document.querySelector('[type="cep"]'));
   validatePhoneNumber(document.querySelector('[type="phone"]'));
 
-  if (hasAnErrorMessage()) sendData();
+  if (areAllErrorsEmpty()) sendData();
 };
