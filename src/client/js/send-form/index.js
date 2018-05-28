@@ -3,7 +3,7 @@ import { validateEmail, validateCEP, validatePhoneNumber, isEmpty } from '../val
 
 const hasAnErrorMessage = () => [...document.querySelectorAll('.error-message')].every(span => isEmpty(span.textContent.trim()));
 
-const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
+export const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
   .reduce((obj, element) => {
     obj[element.name] = element.value;
     return obj;
