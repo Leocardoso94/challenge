@@ -5,7 +5,7 @@ const hasAnErrorMessage = () => [...document.querySelectorAll('.error-message')]
 
 export const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
   .reduce((obj, element) => {
-    obj[element.name] = element.value;
+    obj[element.name] = element.value; // eslint-disable-line no-param-reassign
     return obj;
   }, {});
 
