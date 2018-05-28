@@ -1,4 +1,4 @@
-import { hasRequiredFieldsEmptyOnFieldset, isValidEmail } from '../../src/client/js/validations';
+import { hasRequiredFieldsEmptyOnFieldset, isValidEmail, isEmpty } from '../../src/client/js/validations';
 
 describe('validations', () => {
   describe('hasRequiredFieldsEmptyOnFieldset', () => {
@@ -44,6 +44,18 @@ describe('validations', () => {
       expect(isValidEmail('user.name@gmail.com')).toBe(true);
       expect(isValidEmail('user@gmail.com')).toBe(true);
       expect(isValidEmail('user@hotmail.com')).toBe(true);
+    });
+  });
+  describe('isEmpty', () => {
+    it('should return true if value is empty', () => {
+      expect(isEmpty()).toBe(true);
+      expect(isEmpty(null)).toBe(true);
+      expect(isEmpty('')).toBe(true);
+      expect(isEmpty([])).toBe(true);
+    });
+    it('should return false if value is not empty', () => {
+      expect(isEmpty('a')).toBe(false);
+      expect(isEmpty([1])).toBe(false);
     });
   });
 });
