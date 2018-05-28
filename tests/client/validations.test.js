@@ -58,4 +58,9 @@ describe('validations', () => {
       expect(isEmpty([1])).toBe(false);
     });
   });
+  describe('validateEmail', () => {
+    it('should ', () => {
+
+    });
+  });
 });

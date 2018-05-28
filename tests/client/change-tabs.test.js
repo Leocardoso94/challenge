@@ -3,6 +3,7 @@
  */
 
 import changeTabs from '../../src/client/js/change-tabs';
+import { REQUIRED_FIELD_MESSAGE } from '../../src/client/js/messages';
 
 document.body.innerHTML = `
  <form class="form">
@@ -33,7 +34,7 @@ describe('change-tabs', () => {
     expect(document.querySelector('fieldset.user').style.display).toBe('none');
     expect(document.querySelector('[data-step="seu_pedido"]').classList.contains('form__steps-item--active')).toBe(true);
     expect(document.querySelector('[data-step="seus_dados"]').classList.contains('form__steps-item--active')).toBe(false);
-    expect(document.querySelector('input').nextSibling.textContent).toBe('Este campo é requerido');
+    expect(document.querySelector('input').nextSibling.textContent).toBe(REQUIRED_FIELD_MESSAGE);
   });
   it('should change the tab when the button is clicked', () => {
     document.querySelector('input').value = '1';

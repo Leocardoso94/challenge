@@ -1,4 +1,5 @@
 import { isEmpty } from '../validations';
+import { REQUIRED_FIELD_MESSAGE } from '../messages';
 
 export const setTextOfError = (field, text) => {
   const errorMessage = field.nextSibling;
@@ -8,7 +9,7 @@ export const setTextOfError = (field, text) => {
 export const showRequiredFieldErrorsOnFieldSet = (fieldSet) => {
   const fields = [...fieldSet.querySelectorAll(':required')].filter(field => isEmpty(field.value));
   fields.forEach((field) => {
-    setTextOfError(field, 'Este campo é requerido');
+    setTextOfError(field, REQUIRED_FIELD_MESSAGE);
   });
 };
 
