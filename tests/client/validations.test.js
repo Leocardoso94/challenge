@@ -105,5 +105,18 @@ describe('validations', () => {
       await validateCEP(document.querySelector('input'));
       expect(document.querySelector('span').textContent.trim()).toBe('');
     });
+    it('should show the cep invalid message if is a invalid cep', async () => {
+      document.body.innerHTML = '<input value="aaa"><span/>';
+      const input = document.querySelector('input');
+      global.fetch = jest.fn().mockImplementation(() => new Promise((resolve) => {
+        resolve({
+          json() {
+            return { erro: true };
+          },
+        });
+      }));
+      await validateCEP(input);
+      expect(document.querySelector('span').textContent).toBe(CEP_INVALID_MESSAGE);
+    });
   });
 });
