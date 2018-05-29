@@ -21,7 +21,7 @@ export const createFormField = () => {
 };
 
 export const createOptions = values => Object.values(values)
-  .map((value, index) => new Option(value, index));
+  .map(value => new Option(value, value));
 
 export const createSelect = (field) => {
   const select = createElementWithAttributes('select', field);

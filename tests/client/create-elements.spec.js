@@ -78,7 +78,7 @@ describe('create-elements', () => {
       options.forEach((option, index) => {
         expect(option).toBeInstanceOf(HTMLOptionElement);
         expect(option.text).toEqual(field.values[index + 1]);
-        expect(option.value).toEqual(`${index}`);
+        expect(option.value).toEqual(field.values[index + 1]);
       });
     });
   });
