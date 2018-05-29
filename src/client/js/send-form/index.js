@@ -5,7 +5,7 @@ export const areAllErrorsEmpty = () => [...document.querySelectorAll('.error-mes
 
 export const getDataFromForm = () => [...document.querySelectorAll('form [name]')]
   .reduce((obj, element) => {
-    obj[element.name] = element.value; // eslint-disable-line no-param-reassign
+    obj[element.name] = isEmpty(element.value) ? null : element.value; // eslint-disable-line 
     return obj;
   }, {});
 

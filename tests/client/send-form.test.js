@@ -14,6 +14,17 @@ describe('sendForm', () => {
       expect(username).toBe('teste');
       expect(password).toBe('foo');
     });
+    it('should return an Null property is value is empty', () => {
+      document.body.innerHTML = `
+      <form>
+        <input name="username" value="teste"/>
+        <input name="password" />
+      </form>
+      `;
+      const { username, password } = getDataFromForm();
+      expect(username).toBe('teste');
+      expect(password).toBe(null);
+    });
   });
   describe('areAllErrorsEmpty', () => {
     it('should return true if all errors are empty', () => {
